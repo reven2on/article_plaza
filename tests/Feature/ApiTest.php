@@ -17,7 +17,7 @@ class ApiTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
-public function testApiCustomRateLimit(): void
+    public function testApiCustomRateLimit(): void
     {
         Config::set('article.hourly_api_throttle', 1);
         $this->serverVariables = ['REMOTE_ADDR' => '192.168.1.1'];
@@ -29,4 +29,3 @@ public function testApiCustomRateLimit(): void
         ->assertStatus(Response::HTTP_TOO_MANY_REQUESTS);
     }
 }
-?>

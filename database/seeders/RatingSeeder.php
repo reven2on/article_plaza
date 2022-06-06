@@ -21,19 +21,19 @@ class RatingSeeder extends Seeder
         $data=[];
         $articles = collect(Article::all()->modelKeys());
         $articles_raw = collect(Article::all());
-        $this->faker = Faker::create();  
-        for($i=0;$i< 10000 ; $i++) {
-        $data[]=[
+        $this->faker = Faker::create();
+        for ($i=0; $i< 10000; $i++) {
+            $data[]=[
             'rate' => $this->faker->numberBetween(1, 5),
             'article_id' => $articles->random(),
             'ipaddress' => $this->faker->localIpv4(),
             'created_at' => $this->faker->dateTimeBetween('-1 week', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 week', 'now')
-        ];
+            ];
         }
 
         $chunks = array_chunk($data, 100);
-        foreach($chunks as $chunk) {
+        foreach ($chunks as $chunk) {
             Rating::insert($chunk);
         }
 

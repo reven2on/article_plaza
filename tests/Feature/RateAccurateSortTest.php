@@ -27,8 +27,5 @@ class RateAccurateSortTest extends TestCase
         });
 
         $this->assertTrue($articles[1]->calculated_rate>$articles[0]->calculated_rate);
-        
     }
-
-
 }

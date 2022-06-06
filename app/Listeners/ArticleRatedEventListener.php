@@ -28,7 +28,7 @@ class ArticleRatedEventListener
      * @return void
      */
     public function handle(ArticleRated $event): void
-    {   
+    {
         $articleService = new ArticleService();
         $event->article->update(['calculated_rate' => $articleService->calcArticleRate($event->article)]);
     }

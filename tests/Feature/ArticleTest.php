@@ -44,10 +44,10 @@ class ArticleTest extends TestCase
     public function testArticleManyToManyRelationshipWithCategory(): void
     {
 
-        $article = Article::factory()->create(); 
-        $category = Category::factory()->create(); 
+        $article = Article::factory()->create();
+        $category = Category::factory()->create();
 
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $article->categories); 
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $article->categories);
     }
 
     public function testArticleIndexOutputIsValid(): void
@@ -208,5 +208,4 @@ class ArticleTest extends TestCase
              ]
          );
     }
-
 }
