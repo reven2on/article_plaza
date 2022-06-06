@@ -34,7 +34,7 @@ docker run --rm \
 
 ## Usage
 API documentation is available at: http://localhost/docs.
-
+Also Laravel Telescope (in order to check performance) is available at: http://localhost/telescope.
 User's daily article rating limit and can be configured by the following variable:
 
 `ARTICLE_RATE_DAILY_LIMIT=10`
