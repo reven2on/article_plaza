@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Article Plaza (Trengo Code Assignment)</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .php-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://localhost";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.29.1.js"></script>
+
+    <script src="../docs/js/theme-default-3.29.1.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;php&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="php">php</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="article-management">
+                    <a href="#article-management">Article management</a>
+                </li>
+                                    <ul id="tocify-subheader-article-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="article-management-GETapi-articles">
+                        <a href="#article-management-GETapi-articles">Display a listing of the articles.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="article-management-POSTapi-articles">
+                        <a href="#article-management-POSTapi-articles">Create and store article in storage.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="article-management-GETapi-articles--id-">
+                        <a href="#article-management-GETapi-articles--id-">Display the specific article .</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="article-management-POSTapi-articles--article--rate">
+                        <a href="#article-management-POSTapi-articles--article--rate">Register a rating for an article.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: June 5 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="article-management">Article management</h1>
+
+    
+
+            <h2 id="article-management-GETapi-articles">Display a listing of the articles.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-articles">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/articles?searchTerm=test&amp;filter[date]=2022-06-04%2C2022-06-05&amp;filter[categories]=minus%2Cpluses&amp;sort[trending]=2022-06-04%2C2022-06-05&amp;sort[popularity]=rating" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"searchTerm\": \"odit\"
+}"
+</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/articles',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'searchTerm'=&gt; 'test',
+            'filter[date]'=&gt; '2022-06-04,2022-06-05',
+            'filter[categories]'=&gt; 'minus,pluses',
+            'sort[trending]'=&gt; '2022-06-04,2022-06-05',
+            'sort[popularity]'=&gt; 'rating',
+        ],
+        'json' =&gt; [
+            'searchTerm' =&gt; 'odit',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-articles">
+            <blockquote>
+            <p>Example response (200, Success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;The article has been loaded&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: &quot;1&quot;,
+            &quot;title&quot;: &quot;test title&quot;,
+            &quot;body&quot;: &quot;test body&quot;,
+            &quot;creation_date&quot;: &quot;2022-06-04 14:44:02&quot;,
+            &quot;views&quot;: 180,
+            &quot;rating&quot;: 4.1
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Too many attempts, try again later&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-articles" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-articles"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-articles"></code></pre>
+</span>
+<span id="execution-error-GETapi-articles" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-articles"></code></pre>
+</span>
+<form id="form-GETapi-articles" data-method="GET"
+      data-path="api/articles"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-articles', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-articles"
+                    onclick="tryItOut('GETapi-articles');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-articles"
+                    onclick="cancelTryOut('GETapi-articles');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-articles" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/articles</code></b>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>searchTerm</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="searchTerm"
+               data-endpoint="GETapi-articles"
+               value="test"
+               data-component="query" hidden>
+    <br>
+<p>the phrase that will be searched.</p>
+            </p>
+                    <p>
+                <b><code>filter[date]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[date]"
+               data-endpoint="GETapi-articles"
+               value="2022-06-04,2022-06-05"
+               data-component="query" hidden>
+    <br>
+<p>filter articles that have been created within a date range.</p>
+            </p>
+                    <p>
+                <b><code>filter[categories]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[categories]"
+               data-endpoint="GETapi-articles"
+               value="minus,pluses"
+               data-component="query" hidden>
+    <br>
+<p>filter articles by one or more categories (comma separated string).</p>
+            </p>
+                    <p>
+                <b><code>sort[trending]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="sort[trending]"
+               data-endpoint="GETapi-articles"
+               value="2022-06-04,2022-06-05"
+               data-component="query" hidden>
+    <br>
+<p>sort trenging articles by amount of views, where the date of views can be filtered</p>
+            </p>
+                    <p>
+                <b><code>sort[popularity]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="sort[popularity]"
+               data-endpoint="GETapi-articles"
+               value="rating"
+               data-component="query" hidden>
+    <br>
+<p>sort articles by popularity based on amount of views or precise article rating (<code>rating</code> or <code>view</code>)</p>
+            </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>searchTerm</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="searchTerm"
+               data-endpoint="GETapi-articles"
+               value="odit"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="article-management-POSTapi-articles">Create and store article in storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-articles">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/articles" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"title\": \"test title\",
+    \"body\": \"test body\",
+    \"categories\": [
+        \"harum\"
+    ]
+}"
+</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/articles',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'title' =&gt; 'test title',
+            'body' =&gt; 'test body',
+            'categories' =&gt; [
+                'harum',
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-articles">
+            <blockquote>
+            <p>Example response (200, Success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;message&quot;: &quot;The article has been created successfully&quot;,
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;message&quot;: Too many attempts, try again later&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-articles" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-articles"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-articles"></code></pre>
+</span>
+<span id="execution-error-POSTapi-articles" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-articles"></code></pre>
+</span>
+<form id="form-POSTapi-articles" data-method="POST"
+      data-path="api/articles"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-articles', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-articles"
+                    onclick="tryItOut('POSTapi-articles');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-articles"
+                    onclick="cancelTryOut('POSTapi-articles');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-articles" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/articles</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>title</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="title"
+               data-endpoint="POSTapi-articles"
+               value="test title"
+               data-component="body" hidden>
+    <br>
+<p>title of the article.</p>
+        </p>
+                <p>
+            <b><code>body</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="body"
+               data-endpoint="POSTapi-articles"
+               value="test body"
+               data-component="body" hidden>
+    <br>
+<p>body of the article.</p>
+        </p>
+                <p>
+            <b><code>categories</code></b>&nbsp;&nbsp;<small>string[]</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="categories[0]"
+               data-endpoint="POSTapi-articles"
+               data-component="body" hidden>
+        <input type="text"
+               name="categories[1]"
+               data-endpoint="POSTapi-articles"
+               data-component="body" hidden>
+    <br>
+<p>category or list of categories of the article.</p>
+        </p>
+        </form>
+
+            <h2 id="article-management-GETapi-articles--id-">Display the specific article .</h2>
+
+<p>
+</p>
+
+<p>by calling this endpoint also a view will be register by IP address</p>
+
+<span id="example-requests-GETapi-articles--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/articles/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/articles/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-articles--id-">
+            <blockquote>
+            <p>Example response (200, Success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;The article has been created successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 2,
+        &quot;title&quot;: &quot;test title&quot;,
+        &quot;body&quot;: &quot;test body&quot;,
+        &quot;creation_date&quot;: &quot;2022-06-04 15:08:04&quot;,
+        &quot;views&quot;: 5,
+        &quot;rating&quot;: 3
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;message&quot;: &quot;The article has been loaded&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-articles--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-articles--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-articles--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-articles--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-articles--id-"></code></pre>
+</span>
+<form id="form-GETapi-articles--id-" data-method="GET"
+      data-path="api/articles/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-articles--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-articles--id-"
+                    onclick="tryItOut('GETapi-articles--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-articles--id-"
+                    onclick="cancelTryOut('GETapi-articles--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-articles--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/articles/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-articles--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>ID of the article.</p>
+            </p>
+                    </form>
+
+            <h2 id="article-management-POSTapi-articles--article--rate">Register a rating for an article.</h2>
+
+<p>
+</p>
+
+<p>every IP address can rate an article just once
+every IP address can rate total number of 10 per day</p>
+
+<span id="example-requests-POSTapi-articles--article--rate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/articles/1/rate" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"rate\": 4
+}"
+</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/articles/1/rate',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'rate' =&gt; 4,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-articles--article--rate">
+            <blockquote>
+            <p>Example response (200, Success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;The article has been created successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 2,
+        &quot;title&quot;: &quot;test title&quot;,
+        &quot;body&quot;: &quot;test body&quot;,
+        &quot;creation_date&quot;: &quot;2022-06-04 15:08:04&quot;,
+        &quot;views&quot;: 5,
+        &quot;rating&quot;: 3
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;message&quot;: &quot;The article has been loaded&quot;,
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;message&quot;: &quot;The article has been rated before by current IP address&quot;,
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;message&quot;: &quot;Current IP address have exceeded the daily maximum number of rating articles&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-articles--article--rate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-articles--article--rate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-articles--article--rate"></code></pre>
+</span>
+<span id="execution-error-POSTapi-articles--article--rate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-articles--article--rate"></code></pre>
+</span>
+<form id="form-POSTapi-articles--article--rate" data-method="POST"
+      data-path="api/articles/{article}/rate"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-articles--article--rate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-articles--article--rate"
+                    onclick="tryItOut('POSTapi-articles--article--rate');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-articles--article--rate"
+                    onclick="cancelTryOut('POSTapi-articles--article--rate');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-articles--article--rate" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/articles/{article}/rate</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>article</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="article"
+               data-endpoint="POSTapi-articles--article--rate"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>rate</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="rate"
+               data-endpoint="POSTapi-articles--article--rate"
+               value="4"
+               data-component="body" hidden>
+    <br>
+<p>rate of article (between <code>1</code> to <code>5</code>).</p>
+        </p>
+        </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

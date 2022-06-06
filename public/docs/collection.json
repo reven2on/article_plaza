@@ -1,0 +1,260 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Article Plaza (Trengo Code Assignment)",
+        "_postman_id": "63e33a2d-0646-4b77-8ef0-956b49491585",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Article management",
+            "description": "",
+            "item": [
+                {
+                    "name": "Display a listing of the articles.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/articles",
+                            "query": [
+                                {
+                                    "key": "searchTerm",
+                                    "value": "test",
+                                    "description": "the phrase that will be searched.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bdate%5D",
+                                    "value": "2022-06-04%2C2022-06-05",
+                                    "description": "filter articles that have been created within a date range.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bcategories%5D",
+                                    "value": "minus%2Cpluses",
+                                    "description": "filter articles by one or more categories (comma separated string).",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort%5Btrending%5D",
+                                    "value": "2022-06-04%2C2022-06-05",
+                                    "description": "sort trenging articles by amount of views, where the date of views can be filtered",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort%5Bpopularity%5D",
+                                    "value": "rating",
+                                    "description": "sort articles by popularity based on amount of views or precise article rating (`rating` or `view`)",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/articles?searchTerm=test&filter%5Bdate%5D=2022-06-04%2C2022-06-05&filter%5Bcategories%5D=minus%2Cpluses&sort%5Btrending%5D=2022-06-04%2C2022-06-05&sort%5Bpopularity%5D=rating"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"searchTerm\":\"odit\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"message\": \"The article has been loaded\",\n \"data\": [\n    {\n        \"id\": \"1\",\n        \"title\": \"test title\",\n        \"body\": \"test body\",\n        \"creation_date\": \"2022-06-04 14:44:02\",\n        \"views\": 180,\n        \"rating\": 4.1\n    }\n  ]\n}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 429,
+                            "body": "{\n \"message\": \"Too many attempts, try again later\"\n}",
+                            "name": "Too many requests"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create and store article in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/articles",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/articles"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"test title\",\"body\":\"test body\",\"categories\":[\"harum\"]}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"message\": \"The article has been created successfully\",\n}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 429,
+                            "body": "{\n \"message\": Too many attempts, try again later\"\n}",
+                            "name": "Too many requests"
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specific article .",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/articles\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/articles\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID of the article."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "by calling this endpoint also a view will be register by IP address",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"message\": \"The article has been created successfully\",\n \"data\": {\n     \"id\": 2,\n     \"title\": \"test title\",\n     \"body\": \"test body\",\n     \"creation_date\": \"2022-06-04 15:08:04\",\n     \"views\": 5,\n     \"rating\": 3\n  }\n}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 429,
+                            "body": "{\n \"message\": \"The article has been loaded\",\n}",
+                            "name": "Too many requests"
+                        }
+                    ]
+                },
+                {
+                    "name": "Register a rating for an article.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/articles\/:article\/rate",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/articles\/:article\/rate",
+                            "variable": [
+                                {
+                                    "id": "article",
+                                    "key": "article",
+                                    "value": "1",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"rate\":4}"
+                        },
+                        "description": "every IP address can rate an article just once\nevery IP address can rate total number of 10 per day",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"message\": \"The article has been created successfully\",\n \"data\": {\n     \"id\": 2,\n     \"title\": \"test title\",\n     \"body\": \"test body\",\n     \"creation_date\": \"2022-06-04 15:08:04\",\n     \"views\": 5,\n     \"rating\": 3\n  }\n}",
+                            "name": "Success"
+                        },
+                        {
+                            "header": [],
+                            "code": 429,
+                            "body": "{\n \"message\": \"The article has been loaded\",\n}",
+                            "name": "Too many requests"
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\n \"message\": \"The article has been rated before by current IP address\",\n}",
+                            "name": "Conflict"
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\n \"message\": \"Current IP address have exceeded the daily maximum number of rating articles\",\n}",
+                            "name": "Conflict"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
