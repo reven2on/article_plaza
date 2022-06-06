@@ -33,15 +33,15 @@ docker run --rm \
 - `./vendor/bin/sail artisan migrate:fresh --seed`
 
 ## Usage
-API documentation is available at: http://localhost/docs.
-Also Laravel Telescope (in order to check performance) is available at: http://localhost/telescope.
-User's daily article rating limit and can be configured by the following variable:
+-  API documentation is available at: http://localhost/docs.
+-  Also Laravel Telescope (in order to check performance) is available at: http://localhost/telescope.
+-  User's daily article rating limit and can be configured by the following variable:
 
-`ARTICLE_RATE_DAILY_LIMIT=10`
+    `ARTICLE_RATE_DAILY_LIMIT=10`
 
-A custom API rate limiter is enabled and can be configured by the following variable:
+-  A custom API rate limiter is enabled and can be configured by the following variable:
 
-`HOURLY_API_THROTTLE=30`
+    `HOURLY_API_THROTTLE=30`
 
 ## Testing
 
