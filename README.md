@@ -1,6 +1,6 @@
 # Article Plaza
 
-<a href="https://github.com/reven2on/article_plaza/actions/workflows/test.yml"><img src="https://github.com/reven2on/article_plaza/actions/workflows/test.yml/badge.svg" alt="Build Status"></a>
+<a href="https://github.com/reven2on/article_plaza/actions/workflows/laravel.yml"><img src="https://github.com/reven2on/article_plaza/actions/workflows/laravel.yml/badge.svg" alt="Build Status"></a>
 
 
 > A laravel application for managing articles.
