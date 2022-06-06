@@ -1,0 +1,355 @@
+openapi: 3.0.3
+info:
+  title: 'Article Plaza (Trengo Code Assignment)'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/articles:
+    get:
+      summary: 'Display a listing of the articles.'
+      description: ''
+      parameters:
+        -
+          in: query
+          name: searchTerm
+          description: 'the phrase that will be searched.'
+          example: test
+          required: false
+          schema:
+            type: string
+            description: 'the phrase that will be searched.'
+            example: test
+        -
+          in: query
+          name: 'filter[date]'
+          description: 'filter articles that have been created within a date range.'
+          example: '2022-06-04,2022-06-05'
+          required: false
+          schema:
+            type: string
+            description: 'filter articles that have been created within a date range.'
+            example: '2022-06-04,2022-06-05'
+        -
+          in: query
+          name: 'filter[categories]'
+          description: 'filter articles by one or more categories (comma separated string).'
+          example: 'minus,pluses'
+          required: false
+          schema:
+            type: string
+            description: 'filter articles by one or more categories (comma separated string).'
+            example: 'minus,pluses'
+        -
+          in: query
+          name: 'sort[trending]'
+          description: 'sort trenging articles by amount of views, where the date of views can be filtered'
+          example: '2022-06-04,2022-06-05'
+          required: false
+          schema:
+            type: string
+            description: 'sort trenging articles by amount of views, where the date of views can be filtered'
+            example: '2022-06-04,2022-06-05'
+        -
+          in: query
+          name: 'sort[popularity]'
+          description: 'sort articles by popularity based on amount of views or precise article rating (`rating` or `view`)'
+          example: rating
+          required: false
+          schema:
+            type: string
+            description: 'sort articles by popularity based on amount of views or precise article rating (`rating` or `view`)'
+            example: rating
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The article has been loaded'
+                  data:
+                    -
+                      id: '1'
+                      title: 'test title'
+                      body: 'test body'
+                      creation_date: '2022-06-04 14:44:02'
+                      views: 180
+                      rating: 4.1
+                properties:
+                  message:
+                    type: string
+                    example: 'The article has been loaded'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: '1'
+                        title: 'test title'
+                        body: 'test body'
+                        creation_date: '2022-06-04 14:44:02'
+                        views: 180
+                        rating: 4.1
+                    items:
+                      type: object
+        429:
+          description: 'Too many requests'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Too many attempts, try again later'
+                properties:
+                  message:
+                    type: string
+                    example: 'Too many attempts, try again later'
+      tags:
+        - 'Article management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                searchTerm:
+                  type: string
+                  description: ''
+                  example: odit
+              required:
+                - searchTerm
+      security: []
+    post:
+      summary: 'Create and store article in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"message\": \"The article has been created successfully\",\n}"
+        429:
+          description: 'Too many requests'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"message\": Too many attempts, try again later\"\n}"
+      tags:
+        - 'Article management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'title of the article.'
+                  example: 'test title'
+                body:
+                  type: string
+                  description: 'body of the article.'
+                  example: 'test body'
+                categories:
+                  type: array
+                  description: 'category or list of categories of the article.'
+                  example:
+                    - harum
+                  items:
+                    type: string
+      security: []
+  '/api/articles/{id}':
+    get:
+      summary: 'Display the specific article .'
+      description: 'by calling this endpoint also a view will be register by IP address'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The article has been created successfully'
+                  data:
+                    id: 2
+                    title: 'test title'
+                    body: 'test body'
+                    creation_date: '2022-06-04 15:08:04'
+                    views: 5
+                    rating: 3
+                properties:
+                  message:
+                    type: string
+                    example: 'The article has been created successfully'
+                  data:
+                    type: object
+                    example:
+                      id: 2
+                      title: 'test title'
+                      body: 'test body'
+                      creation_date: '2022-06-04 15:08:04'
+                      views: 5
+                      rating: 3
+        429:
+          description: 'Too many requests'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"message\": \"The article has been loaded\",\n}"
+      tags:
+        - 'Article management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'ID of the article.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/articles/{article}/rate':
+    post:
+      summary: 'Register a rating for an article.'
+      description: "every IP address can rate an article just once\nevery IP address can rate total number of 10 per day"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The article has been created successfully'
+                  data:
+                    id: 2
+                    title: 'test title'
+                    body: 'test body'
+                    creation_date: '2022-06-04 15:08:04'
+                    views: 5
+                    rating: 3
+                properties:
+                  message:
+                    type: string
+                    example: 'The article has been created successfully'
+                  data:
+                    type: object
+                    example:
+                      id: 2
+                      title: 'test title'
+                      body: 'test body'
+                      creation_date: '2022-06-04 15:08:04'
+                      views: 5
+                      rating: 3
+        429:
+          description: 'Too many requests'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"message\": \"The article has been loaded\",\n}"
+        409:
+          description: Conflict
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"message\": \"Current IP address have exceeded the daily maximum number of rating articles\",\n}"
+      tags:
+        - 'Article management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rate:
+                  type: integer
+                  description: 'rate of article (between `1` to `5`).'
+                  example: 4
+              required:
+                - rate
+      security: []
+    parameters:
+      -
+        in: path
+        name: article
+        description: ''
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: 'Article management'
+    description: ''
