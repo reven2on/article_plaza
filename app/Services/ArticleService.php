@@ -63,7 +63,7 @@ class ArticleService
 
        
 
-        return $average - $confidenceZ * $standardDeviation;
+        return round($average - $confidenceZ * $standardDeviation,2);
     }
 
 

@@ -103,7 +103,7 @@ class ArticleController extends Controller
     public function show(Article $article, Request $request): mixed
     {
         event(new ArticleViewed($article, $request->ip()));
-        return response()->ok(__('messages.article_loaded'), new ArticleResource($article));
+        return response()->ok(__('messages.article_loaded'), new ArticleResource($article->withCount('ratings','userviews')->first()));
     }
 
 
