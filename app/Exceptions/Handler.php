@@ -49,9 +49,5 @@ class Handler extends ExceptionHandler
                 return response()->notfound(__('messages.article_not_found'));
             }
         });
-
-
     }
-
-    
 }

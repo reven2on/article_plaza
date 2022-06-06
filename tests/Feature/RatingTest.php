@@ -19,11 +19,10 @@ class RatingTest extends TestCase
     public function testRatingBelongsToRelationshipWithArticle()
     {
 
-        $article = Article::factory()->create(); 
-        $rating = Rating::factory()->create(['article_id' => $article->id]); 
+        $article = Article::factory()->create();
+        $rating = Rating::factory()->create(['article_id' => $article->id]);
 
         $this->assertEquals(1, $article->ratings()->count());
         $this->assertInstanceOf(Article::class, $rating->article);
-
     }
 }

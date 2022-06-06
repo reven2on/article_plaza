@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Services;
 
 use App\Models\Rating;
@@ -22,10 +22,10 @@ class ArticleService
         return $article;
     }
 
-    public function rateArticle($article,$request): Rating
+    public function rateArticle($article, $request): Rating
     {
         $numberOfRatings = Rating::where('ipaddress', $request->ip())->whereDate('created_at', Carbon::today())->count();
-        if($numberOfRatings >= config('article.daily_limit')){
+        if ($numberOfRatings >= config('article.daily_limit')) {
             throw new TooMuchRatingsException(__('messages.reach_daily_rating_limit'));
         }
         $rate = $article->ratings()->firstOrCreate(
@@ -45,29 +45,30 @@ class ArticleService
         $init_arr= [ 1=> 0, 2=> 0, 3=>0, 4=>0, 5=>0];
         $ratings = $article->ratings->pluck('rate')->toArray();
         $ratings =array_count_values($ratings);
-        for($i=1;$i<=5;$i++) {
-            if(isset($ratings[$i])) { 
+        for ($i=1; $i<=5; $i++) {
+            if (isset($ratings[$i])) {
                 $init_arr[$i]=$ratings[$i];
             }
         }
-        $ratings=$init_arr;   
+        $ratings=$init_arr;
         
         ksort($ratings);
         
         $confidenceZ = 1.65;
-        $fakeRatings = array_map(function($item) { return ++$item; },$ratings);
+        $fakeRatings = array_map(function ($item) {
+            return ++$item;
+        }, $ratings);
         $n = array_sum($fakeRatings);
-        $average = array_sum(array_map(function($item, $i) use ($n) { return (($i+1)*$item)/$n; },$fakeRatings, array_keys($fakeRatings)));
-        $x = array_sum(array_map(function($item, $i) use ($n) { return (pow(($i+1),2)*$item)/$n; },$fakeRatings, array_keys($fakeRatings)));
-        $standardDeviation = sqrt($x - pow($average,2)) / ($n+1);
+        $average = array_sum(array_map(function ($item, $i) use ($n) {
+            return (($i+1)*$item)/$n;
+        }, $fakeRatings, array_keys($fakeRatings)));
+        $x = array_sum(array_map(function ($item, $i) use ($n) {
+            return (pow(($i+1), 2)*$item)/$n;
+        }, $fakeRatings, array_keys($fakeRatings)));
+        $standardDeviation = sqrt($x - pow($average, 2)) / ($n+1);
 
        
 
-        return round($average - $confidenceZ * $standardDeviation,2);
+        return round($average - $confidenceZ * $standardDeviation, 2);
     }
-
-
 }
-
-
-?>

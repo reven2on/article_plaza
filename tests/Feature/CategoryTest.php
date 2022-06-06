@@ -20,10 +20,9 @@ class CategoryTest extends TestCase
     public function testCategoryBelongsToManyRelationshipWithArticle()
     {
 
-        $article = Article::factory()->create();  
-        $category = Category::factory()->create(); 
+        $article = Article::factory()->create();
+        $category = Category::factory()->create();
 
-        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $article->categories); 
-
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $article->categories);
     }
 }

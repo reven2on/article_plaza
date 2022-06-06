@@ -49,7 +49,7 @@ class ArticleRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        if(isset($this->sort['trending'])){
+        if (isset($this->sort['trending'])) {
             //$this->replace(['sort' => explode(',', $this->sort['trending'])]);
             $this->replace([
                 'sort' => array_merge(
@@ -60,7 +60,7 @@ class ArticleRequest extends FormRequest
                 )
             ]);
         }
-        if(isset($this->filter['categories'])){
+        if (isset($this->filter['categories'])) {
             $this->replace([
                 'filter' => array_merge(
                     $this->filter,
@@ -70,7 +70,7 @@ class ArticleRequest extends FormRequest
                 )
             ]);
         }
-        if(isset($this->filter['date'])){
+        if (isset($this->filter['date'])) {
             $this->replace([
                 'filter' => array_merge(
                     $this->filter,

@@ -50,7 +50,7 @@ class ArticleController extends Controller
 
     public function index(ArticleRequest $request): mixed
     {
-        $articles=Article::with('ratings', 'userviews')->withCount('ratings','userviews')->withSum('ratings', 'rate')->search($request)
+        $articles=Article::with('ratings', 'userviews')->withCount('ratings', 'userviews')->withSum('ratings', 'rate')->search($request)
                         ->sort($request)
                         ->filter($request)
                         ->cursor();
@@ -71,7 +71,7 @@ class ArticleController extends Controller
      *  "message": Too many attempts, try again later"
      * }
      */
-    public function store(ArticleRequest $request,ArticleService $articleService): mixed
+    public function store(ArticleRequest $request, ArticleService $articleService): mixed
     {
 
         
@@ -103,7 +103,7 @@ class ArticleController extends Controller
     public function show(Article $article, Request $request): mixed
     {
         event(new ArticleViewed($article, $request->ip()));
-        return response()->ok(__('messages.article_loaded'), new ArticleResource($article->withCount('ratings','userviews')->first()));
+        return response()->ok(__('messages.article_loaded'), new ArticleResource($article->withCount('ratings', 'userviews')->first()));
     }
 
 
@@ -135,10 +135,10 @@ class ArticleController extends Controller
      *  "message": "Current IP address have exceeded the daily maximum number of rating articles",
      * }
      */
-    public function rate(Article $article, ArticleRatingRequest $request,ArticleService $articleService): mixed
+    public function rate(Article $article, ArticleRatingRequest $request, ArticleService $articleService): mixed
     {
         try {
-            $articleService->rateArticle($article,$request);
+            $articleService->rateArticle($article, $request);
             return response()->created(__('messages.article_rated'));
         } catch (RatingAlreadyExistException $exception) {
             return $exception->render();

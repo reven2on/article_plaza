@@ -10,7 +10,7 @@ class TooMuchRatingsException extends Exception
     public $message;
     public $data;
 
-    public function __construct($message,$data = null, Exception $previous = NULL)
+    public function __construct($message, $data = null, Exception $previous = null)
     {
         $this->message = $message;
         $this->data = $data;

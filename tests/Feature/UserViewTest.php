@@ -19,11 +19,10 @@ class UserViewTest extends TestCase
     public function testUserviewBelongsToRelationshipWithArticle()
     {
 
-        $article = Article::factory()->create(); 
-        $userView = UserView::factory()->create(['article_id' => $article->id]); 
+        $article = Article::factory()->create();
+        $userView = UserView::factory()->create(['article_id' => $article->id]);
 
         $this->assertEquals(1, $article->userViews()->count());
         $this->assertInstanceOf(Article::class, $userView->article);
-
     }
 }

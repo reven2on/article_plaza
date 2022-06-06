@@ -14,5 +14,4 @@ Route::middleware(['throttle:rate-limiter'])->group(function () {
         'index', 'show', 'store'
     ]);
     Route::post('/articles/{article}/rate', [ArticleController::class, 'rate'])->name('rate_article');
-    
 });

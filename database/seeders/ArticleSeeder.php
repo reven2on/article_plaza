@@ -16,8 +16,8 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        $this->faker = Faker::create();  
-        for($i=0;$i< 1000 ; $i++) {
+        $this->faker = Faker::create();
+        for ($i=0; $i< 1000; $i++) {
             $data[]=[
                 'title' => $this->faker->realText($maxNbChars = 50, $indexSize = 2),
                 'body' => $this->faker->realText($maxNbChars = 100, $indexSize = 2),
@@ -27,11 +27,8 @@ class ArticleSeeder extends Seeder
         }
 
         $chunks = array_chunk($data, 50);
-        foreach($chunks as $chunk) {
+        foreach ($chunks as $chunk) {
             Article::insert($chunk);
         }
-
-
-        
     }
 }

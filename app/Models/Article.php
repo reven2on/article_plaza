@@ -41,7 +41,7 @@ class Article extends Model
                 }else{
                     return 0;
                 }
-                
+
             },
         );
     }*/
@@ -115,6 +115,4 @@ class Article extends Model
     {
         return $this->belongsToMany(Category::class);
     }
-
-  
 }
